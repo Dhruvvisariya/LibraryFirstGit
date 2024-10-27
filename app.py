@@ -16,6 +16,12 @@ while option !='x' and option !='X':
     elif option=="5":
         ID=input("Enter ID:")
         my_function.return_book(books,ID)
+    elif option=="6":
+        my_function.update_book(books)
+    elif option=="7":
+        my_function.show_all(books)
+    elif option=="8":
+        my_function.show_book(books)
     else:
         print("wrong command")
     input("press enter to continue ...")

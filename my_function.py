@@ -26,7 +26,7 @@ def input_book_info():
     year= int(input("Year: "))
 
     return {
-        'Id' : id,
+        'id' : id,
         'name': name,
         'description': description,
         'isbn': isbn,
@@ -41,7 +41,7 @@ def input_book_info():
 def create_book():
     print("Plaase enter your book information")
     book_input=input_book_info()
-    book = Book(book_input['Id'],book_input['name'],
+    book = Book(book_input['id'],book_input['name'],
                 book_input['description'], book_input['isbn'],
                   book_input['page_count'],book_input['issued'],
                   book_input['author'], book_input['year'])
@@ -59,22 +59,32 @@ def save_books(books):
         print("we had an error saving books")
 
 #load books function
+import json
+
+# load books function
 def load_books():
     try:
-        file = open("books.json","r")
-        loaded_books = json.loads(file.read())
-        books=[]
-        for book in loaded_books:
-            new_obj= Book(book['Id'],book['name'],
-                            book['description'], book['isbn'],
-                            book_input['page_count'],book['issued'],
-                            book['author'], book['year'])
-            books.append(new_obj)
-        print("Books are loaded")
-        return books
-        
-    except:
-       print("given file dosen't exist or error")
+        with open("books.json", "r") as file:
+            loaded_books = json.loads(file.read())
+            books = []
+            for book in loaded_books:
+                new_obj = Book(book['id'], book['name'],
+                               book['description'], book['isbn'],
+                               book['page_count'], book['issued'],
+                               book['author'], book['year'])
+                books.append(new_obj)
+            print("Books are loaded")
+            return books
+            
+    except FileNotFoundError:
+        print("The file 'books.json' doesn't exist.")
+    except json.JSONDecodeError:
+        print("Error decoding JSON from the file.")
+    except KeyError as e:
+        print(f"Key error: {e}. Please check if all keys exist in the JSON data.")
+    except Exception as e:
+        print(f"An error occurred: {e}")
+
 
 #find books function
 def find_book(books, id):
@@ -84,9 +94,45 @@ def find_book(books, id):
     return None
 
 #issue book function
-def issue_book(B1, id):
-    B1[index].issued=True if find_book(B1, id)!=None else print("No book  found !")
+def issue_book(Books, id):
+    index= find_book(Books, id)
+    if index!=None:
+        Books[index].issued=True
+        print("Book is issued!")
+    else:
+        print("No book  found !")
+     
 
 #return book funtion
-def return_book(B1, id):
-    B1[index].issued=False if find_book(B1, id)!=None else print("No book  found !")
+def return_book(Books, id):
+    index= find_book(Books, id)
+    if index!=None:
+        Books[index].issued=False
+        print("Book is returned")
+    else:
+        print("No book  found !")
+
+#update book function
+def update_book(books):
+    ID= input ( "Entre ID :")
+    Index = find_book(books,ID)
+    if Index != None:
+        NewBook= create_book()
+        books[Index]= NewBook
+    else:
+        print("No such book")
+
+#show all books function
+def show_all(books):
+    for book in books:
+        print(book.to_dict())
+    
+#show a book fucntion
+def show_book(books):
+    ID=input("Enter ID :")
+    index=find_book(books,ID)
+    if index != None:
+        print(books[index].to_dict())
+    else:
+        print("No such book")
+

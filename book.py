@@ -12,7 +12,7 @@ class Book:
         dictionary = {
             "id":self.id,
             "name": self.name,
-            "desccription":self.description,
+            "description":self.description,
             "isbn":self.isbn,
             "page_count":self.page_count,
             "issued":self.issued,

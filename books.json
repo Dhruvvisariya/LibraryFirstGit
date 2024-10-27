@@ -1,1 +1,22 @@
-[]
+[
+    {
+        "id": "123",
+        "name": "we are one",
+        "description": "about us",
+        "isbn": "23467",
+        "page_count": 221,
+        "issued": true,
+        "author": "author",
+        "year": 2020
+    },
+    {
+        "id": "321",
+        "name": "we are kings",
+        "description": "about kings",
+        "isbn": "12567983",
+        "page_count": 223,
+        "issued": false,
+        "author": "kings",
+        "year": 1990
+    }
+]
