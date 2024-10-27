@@ -11,8 +11,11 @@ while option !='x' and option !='X':
     elif option=="3":
         books= my_function.load_books()
     elif option=="4":
-        ID=input("Entre ID:")
+        ID=input("Enter ID:")
         my_function.issue_book(books,ID)
+    elif option=="5":
+        ID=input("Enter ID:")
+        my_function.return_book(books,ID)
     else:
         print("wrong command")
     input("press enter to continue ...")

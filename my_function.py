@@ -86,3 +86,7 @@ def find_book(books, id):
 #issue book function
 def issue_book(B1, id):
     B1[index].issued=True if find_book(B1, id)!=None else print("No book  found !")
+
+#return book funtion
+def return_book(B1, id):
+    B1[index].issued=False if find_book(B1, id)!=None else print("No book  found !")
