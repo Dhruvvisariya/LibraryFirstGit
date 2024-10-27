@@ -85,4 +85,4 @@ def find_book(books, id):
 
 #issue book function
 def issue_book(B1, id):
-    Print(True) if find_book(B1, id)!=None else print(False)
+    B1[index].issued=True if find_book(B1, id)!=None else print("No book  found !")
