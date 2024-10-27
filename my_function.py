@@ -63,9 +63,26 @@ def load_books():
     try:
         file = open("books.json","r")
         loaded_books = json.loads(file.read())
-        print("successfully loaded books")
-        return loaded_books
+        books=[]
+        for book in loaded_books:
+            new_obj= Book(book['Id'],book['name'],
+                            book['description'], book['isbn'],
+                            book_input['page_count'],book['issued'],
+                            book['author'], book['year'])
+            books.append(new_obj)
+        print("Books are loaded")
+        return books
         
     except:
        print("given file dosen't exist or error")
 
+#find books function
+def find_book(books, id):
+    for index,book in enumerate(books):
+        if book.id==id:
+            return index
+    return None
+
+#issue book function
+def issue_book(B1, id):
+    Print(True) if find_book(B1, id)!=None else print(False)

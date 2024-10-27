@@ -9,7 +9,10 @@ while option !='x' and option !='X':
     elif option=="2":
         my_function.save_books(books)
     elif option=="3":
-        print(my_function.load_books())
+        books= my_function.load_books()
+    elif option=="4":
+        ID=input("Entre ID:")
+        my_function.issue_book(books,ID)
     else:
         print("wrong command")
     input("press enter to continue ...")
